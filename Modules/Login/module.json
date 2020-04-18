@@ -1,0 +1,13 @@
+{
+    "name": "Login",
+    "alias": "login",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\Login\\Providers\\LoginServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
