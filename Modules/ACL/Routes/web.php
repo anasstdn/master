@@ -21,4 +21,8 @@ Route::prefix('user')->group(function() {
     Route::match(['get','post'],'/send-data','UserController@sendData');
 	Route::match(['get', 'post'],'/check-username','UserController@checkUsername');
 	Route::match(['get', 'post'],'/check-email','UserController@checkEmail');
+	Route::match(['get', 'post'],'/get-data','UserController@getData');
+	Route::match(['get', 'post'],'/{id}/edit','UserController@edit');
+	Route::match(['get', 'post'],'/{id}/reset','UserController@reset');
+	Route::delete('/{id}', 'UserController@destroy');
 });

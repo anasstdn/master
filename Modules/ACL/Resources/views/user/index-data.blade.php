@@ -16,9 +16,10 @@
 								<td>{{$row->username}}</td>
 								<td>{{$row->name}}</td>
 								<td>{{$row->email}}</td>
-								<td>{{$row->active}}</td>
-								<td style="text-align:center"><a onclick='show_modal("<?php echo url("satuan/".$row->id)."/edit"?>")' style='color:white' class='btn btn-sm btn-primary' data-toggle='click-ripple' data-original-title='Edit' title='Edit'><i class='fa fa-edit' aria-hidden='true'></i> Edit</a>
-								<a onclick='hapus("<?php echo url("satuan/".$row->id)?>")' style='color:white' class='btn btn-sm btn-danger' data-toggle='click-ripple' data-original-title='Remove' title='Remove'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
+								<td>{{$row->verified}}</td>
+								<td style="text-align:center"><a onclick='show_modal("<?php echo url("user/".$row->id)."/edit"?>")' style='color:white' class='btn btn-sm btn-primary' data-toggle='click-ripple' data-original-title='Edit' title='{{__('button.edit')}}'><i class='fa fa-edit' aria-hidden='true'></i> {{__('button.edit')}}</a>
+								<a onclick='hapus("<?php echo url("user/".$row->id)?>")' style='color:white' class='btn btn-sm btn-danger' data-toggle='click-ripple' data-original-title='Remove' title='{{__('button.delete')}}'><i class='fa fa-trash-o' aria-hidden='true'></i> {{__('button.delete')}}</a>
+								<a onclick='reset_password("<?php echo url("user/".$row->id)."/reset"?>")' style='color:white' class='btn btn-sm btn-warning' data-toggle='click-ripple' data-original-title='Reset Password' title='{{__('button.reset')}}'><i class='fa fa-refresh' aria-hidden='true'></i> {{__('button.reset')}}</a>
 								</td>
 							</tr>
 							@endforeach

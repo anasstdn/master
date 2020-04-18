@@ -3,16 +3,24 @@
 return [
     'role_structure' => [
         'superadministrator' => [
-            'users' => 'c,r,u,d',
-            'acl' => 'c,r,u,d',
-            'profile' => 'r,u'
+            'home-menu'=>'r',
+                'home' => 'r',
+            'acl-menu'=>'r',
+                'user' => 'c,r,u,d',
+                // 'permission' => 'r',
+                // 'role'=>'c,r,u',
         ],
         'administrator' => [
-            'users' => 'c,r,u,d',
-            'profile' => 'r,u'
+            'home-menu'=>'r',
+                'home' => 'r',
+            'acl-menu'=>'r',
+                'user' => 'c,r,u,d',
+                // 'permission' => 'r',
+                // 'role'=>'c,r,u',
         ],
         'user' => [
-            'profile' => 'r,u'
+            'home-menu'=>'r',
+                'home' => 'r',
         ],
     ],
     'permission_structure' => [

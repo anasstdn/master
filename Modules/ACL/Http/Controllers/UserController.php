@@ -21,10 +21,37 @@ class UserController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
+      public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:read-user', ['only' => ['index','loadData']]);
+    }
+
     public function index()
     {
         $data = User::orderby('created_at','desc')->paginate(10);
         return view('acl::user.index',compact('data'));
+    }
+
+     public function getData(Request $request)
+    {
+        if($request->ajax())
+        {
+            $per_page=$request->input('per_page',null);
+            $sort=$request->input('sort',null);
+            $search=$request->input('search',null);
+
+            $data=User::select('*')
+            ->where(function($q) use($search){
+                $q->where('name','like','%'.$search.'%')
+                ->orWhere('username','like','%'.$search.'%')
+                ->orWhere('email','like','%'.$search.'%');
+            })
+            ->orderby('created_at',empty($sort) ? 'desc' : $sort=='date_desc'?'desc':'asc')
+            ->paginate(empty($per_page) ? 10 : $per_page);
+            
+            return view('acl::user.index-data',compact('data'))->render();
+        } 
     }
 
     /**
@@ -98,9 +125,20 @@ class UserController extends Controller
      * @param int $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($kode)
     {
         //
+      $user=User::find($kode);
+           // $this->logDeletedActivity($user,'Delete data id='.$kode.'','Users','users');
+           $act=false;
+           try {
+               $act=$user->forceDelete();
+               $delRoleUser=RoleUser::where('user_id',$kode)->forceDelete();
+           } catch (\Exception $e) {
+               $user=User::find($user->pk());
+               $act=$user->delete();
+               $delRoleUser=RoleUser::where('user_id',$kode)->delete();
+           }
     }
 
       public function reset(Request $request, $kode)
@@ -138,8 +176,7 @@ class UserController extends Controller
              'email' =>$all_data['email'] ,
              'password' =>bcrypt($all_data['password']) ,
                    // 'jenis_kelamin' =>isset($all_data['jenis_kelamin'])?$all_data['jenis_kelamin']:'' ,
-             'jenis_kelamin' =>'L' ,
-             'verified'=>$all_data['verified'],
+             'verified'=>$all_data['verified']=='1'?true:false,
            );
 
             // $this->logCreatedActivity(Auth::user(),$data,'Users','users');
@@ -180,9 +217,8 @@ class UserController extends Controller
                  'username' =>$all_data['username'] ,
                  'email' =>$all_data['email'] ,
                  'password' =>bcrypt($all_data['password']) ,
-                       // 'jenis_kelamin' =>isset($all_data['jenis_kelamin'])?$all_data['jenis_kelamin']:'' ,
-                 'jenis_kelamin' =>'L' ,
-                 'verified'=>$all_data['verified'],
+                       // 'jenis_kelamin' =>isset($all_data['jenis_kelamin'])?$all_data['jenis_kelamin']:'' , ,
+                 'verified'=>$all_data['verified']=='1'?true:false,
                );
             }
             else
@@ -193,8 +229,7 @@ class UserController extends Controller
                  'email' =>$all_data['email'] ,
                  // 'password' =>bcrypt($all_data['password']) ,
                        // 'jenis_kelamin' =>isset($all_data['jenis_kelamin'])?$all_data['jenis_kelamin']:'' ,
-                 'jenis_kelamin' =>'L' ,
-                 'verified'=>$all_data['verified'],
+                 'verified'=>$all_data['verified']=='1'?true:false,
                );
             }
             // $this->logUpdatedActivity(Auth::user(),$user->getAttributes(),$dataUser,'Users','users');

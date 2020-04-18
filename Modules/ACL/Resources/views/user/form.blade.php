@@ -843,7 +843,7 @@ function post_data()
 
 					setTimeout(function(){
 						$('#formModal').modal('hide');
-						reload_table();
+						fetch_data(1);
 					}, 2000);
 				}
 				else
