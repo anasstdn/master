@@ -3,13 +3,13 @@
 namespace Modules\ACL\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+// use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use App\Models\User;
 use App\Models\RoleUser;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
-date_default_timezone_set(setting('timezone'));
+// date_default_timezone_set(setting('timezone'));
 use Illuminate\Support\Facades\Auth;
 // use App\Traits\ActivityTraits;
 use Response;
@@ -23,7 +23,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('acl::user.index');
+        $data = User::orderby('created_at','desc')->paginate(10);
+        return view('acl::user.index',compact('data'));
     }
 
     /**

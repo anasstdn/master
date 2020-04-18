@@ -62,18 +62,9 @@
                         </div>
                         <div class="block-content block-content-full">
                             <!-- DataTables functionality is initialized with .js-dataTable-full-pagination class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
-                            <table class="table table-bordered table-striped table-vcenter" id="table-1">
-                                <thead>
-                                    <tr>
-                                      <th>{{ __('panel.no') }}</th>
-                                      <th>{{ __('panel.username') }}</th>
-                                      <th>{{ __('panel.name') }}</th>
-                                      <th>{{ __('panel.email') }}</th>
-                                      <th>{{ __('panel.verified') }}</th>
-                                      <th>{{ __('panel.action') }}</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                            <div id="table_data">
+                              @include('acl::user.index-data')
+                            </div>
                         </div>
                     </div>
                     <!-- END Dynamic Table Full Pagination -->
