@@ -116,7 +116,6 @@ if (! function_exists('setting')) {
         if (is_array($key)) {
             return \App\Models\Setting::set($key[0], $key[1]);
         }
-
         $value = \App\Models\Setting::get($key);
 
         return is_null($value) ? value($default) : $value;

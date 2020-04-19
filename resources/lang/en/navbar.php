@@ -2,6 +2,6 @@
 return [
     'settings'       		=>	'Settings',
     'logout'       			=>	'Log Out',
-    'user'       			=>	'Pengguna',
+    'user'       			=>	'User',
 ];
 ?>

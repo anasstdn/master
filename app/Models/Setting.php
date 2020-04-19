@@ -45,10 +45,13 @@ class Setting extends Model
      */
     public static function add($key, $val, $type = 'string')
     {
-        if ( self::has($key) ) {
-            return self::set($key, $val, $type);
+        $check=self::where('user_id',\Auth::user()->id)->first();
+        if(isset($check) && !empty($check)){
+            if ( self::has($key) ) {
+                $check->update(['name' => $key, 'val' => $val, 'type' => $type,'user_id'=>\Auth::user()->id]);
+                return self::set($key, $val, $type);
+            }
         }
-
         return self::create(['name' => $key, 'val' => $val, 'type' => $type,'user_id'=>\Auth::user()->id]) ? $val : false;
     }
 
@@ -62,8 +65,8 @@ class Setting extends Model
     public static function get($key, $default = null)
     {
         if ( self::has($key) ) {
-            $setting = self::getAllSettings()->where('name', $key)->first();
-            return self::castValue($setting->val, $setting->type);
+            $setting = self::getAllSettings()->where('name', $key)->where('user_id',\Auth::user()->id)->first();
+            return isset($setting)?self::castValue($setting->val, $setting->type):'';
         }
 
         return self::getDefaultValue($key, $default);

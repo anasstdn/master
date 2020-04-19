@@ -43,6 +43,7 @@
                     @if(count(config('setting_fields', [])) )
 
                         @foreach(config('setting_fields') as $section => $fields)
+
                             <div class="panel panel-info">
                                 <div class="panel-heading">
                                     <i class="{{ array_get($fields, 'icon', 'glyphicon glyphicon-flash') }}"></i>

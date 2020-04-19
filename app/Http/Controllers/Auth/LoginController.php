@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Session;
 
 class LoginController extends Controller
 {
@@ -62,6 +63,10 @@ class LoginController extends Controller
         //     auth()->logout();
         //     return back()->with('warning','You need to confirm your account. We have sent you an activation code, please check your email.');
         // }
+        if(setting('language_setting')!==null)
+        {
+            Session::put('locale', setting('language_setting'));
+        }
         return redirect()->intended($this->redirectPath());
     }
 

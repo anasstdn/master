@@ -12,20 +12,26 @@ return [
     | create sections of settings with a type of input.
     */
 
-    'app' => [
+    'lang' => [
 
         'title' => 'panel.settings',
         'desc' => 'panel.settings_desc',
         'icon' => 'glyphicon glyphicon-sunglasses',
 
         'elements' => [
-            [
-                'type' => 'text',
+             [
+                'type' => 'select',
                 'data' => 'string',
-                'name' => 'app_name',
-                'label' => 'App Name',
-                'rules' => 'required|min:2|max:50'
-            ]
+                'name' => 'language_setting',
+                'label' => 'System Language',
+                'rules' => 'required',
+                'class' => 'w-auto px-2',
+                'options' => [
+                    'en' => 'English',
+                    'id' => 'Bahasa',
+                    'ru' => 'Русский',
+                ]
+            ],
         ]
     ],
 
