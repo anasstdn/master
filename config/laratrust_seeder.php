@@ -7,6 +7,7 @@ return [
                 'home' => 'r',
             'acl-menu'=>'r',
                 'user' => 'c,r,u,d',
+                'role' => 'c,r,u,d',
                 // 'permission' => 'r',
                 // 'role'=>'c,r,u',
         ],

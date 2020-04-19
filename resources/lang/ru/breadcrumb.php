@@ -8,5 +8,6 @@ return [
 	'user_management'  			 =>	'Управление пользователями',
 	'acl'       				=>	'Настройки ACL',
 	'permission_management' 	=>  'Управление разрешениями',
+	'roles_management' 		=>	'Управление ролями',
 ];
 ?>

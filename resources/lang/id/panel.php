@@ -23,5 +23,7 @@ return [
     'permission_management' =>  'Manajemen Permissions',
     'display_name'          =>  'Nama Tampilan',
     'description'           =>  'Deskripsi',
+
+    'roles_management'      =>  'Manajemen Roles',
 ];
 ?>

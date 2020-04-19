@@ -26,3 +26,17 @@ Route::prefix('user')->group(function() {
 	Route::match(['get', 'post'],'/{id}/reset','UserController@reset');
 	Route::delete('/{id}', 'UserController@destroy');
 });
+
+Route::prefix('role')->group(function() {
+    Route::get('/', 'RoleController@index');
+    Route::get('/get/{id}/menu', 'RoleController@hakmenus');
+    Route::post('role/createpermissionrole', ['as' => 'role.createpermissionrole', 'uses' => 'RoleController@createpermissionrole']);
+ //    Route::get('/create',['as' => 'user.create', 'uses' => 'UserController@create']);
+ //    Route::match(['get','post'],'/send-data','UserController@sendData');
+	// Route::match(['get', 'post'],'/check-username','UserController@checkUsername');
+	// Route::match(['get', 'post'],'/check-email','UserController@checkEmail');
+	Route::match(['get', 'post'],'/get-data','RoleController@getData');
+	// Route::match(['get', 'post'],'/{id}/edit','UserController@edit');
+	// Route::match(['get', 'post'],'/{id}/reset','UserController@reset');
+	// Route::delete('/{id}', 'UserController@destroy');
+});

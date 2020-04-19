@@ -7,5 +7,6 @@ return [
 	'user_management'   =>	'Users Management',
 	'acl'       		=>	'ACL Settings',
 	 'permission_management' =>  'Permissions Management',
+	 'roles_management' 		=>	'Roles Management',
 ];
 ?>

@@ -23,5 +23,10 @@ return [
     'permission_management' =>  'Permissions Management',
     'display_name'          =>  'Display Name',
     'description'           =>  'Description',
+
+     //Role Management
+    'roles_management'      =>  'Roles Management',
+    'display_name'          =>  'Display Name',
+    'description'           =>  'Description',
 ];
 ?>

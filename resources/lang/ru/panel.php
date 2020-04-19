@@ -23,5 +23,7 @@ return [
     'permission_management' =>  'Управление разрешениями',
     'display_name'          =>  'отображаемое имя',
     'description'           =>  'описание',
+
+    'roles_management'      =>  'Управление ролями',
 ];
 ?>

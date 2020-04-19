@@ -2,10 +2,9 @@
 					<table class="table table-bordered table-striped table-vcenter">
 						<tr>
 							<th>{{ __('panel.no') }}</th>
-							<th>{{ __('panel.username') }}</th>
 							<th>{{ __('panel.name') }}</th>
-							<th>{{ __('panel.email') }}</th>
-							<th>{{ __('panel.verified') }}</th>
+							<th>{{ __('panel.display_name') }}</th>
+							<th>{{ __('panel.description') }}</th>
 							<th>{{ __('panel.action') }}</th>
 						</tr>
 						<tbody>
@@ -13,19 +12,11 @@
 							@foreach($data as $key=>$row)
 							<tr>
 								<td>{{ $data->firstItem() + $key }}</td>
-								<td>{{$row->username}}</td>
 								<td>{{$row->name}}</td>
-								<td>{{$row->email}}</td>
-								<td>
-									@if($row->verified=='1')
-									<a class="btn btn-sm btn-success">{{__('button.yes')}}</a>
-									@else
-									<a class="btn btn-sm btn-danger">{{__('button.no')}}</a>
-									@endif
-								</td>
-								<td style="text-align:center"><a onclick='show_modal("<?php echo url("user/".$row->id)."/edit"?>")' style='color:white' class='btn btn-sm btn-primary' data-toggle='click-ripple' data-original-title='Edit' title='{{__('button.edit')}}'><i class='fa fa-edit' aria-hidden='true'></i> {{__('button.edit')}}</a>
-								<a onclick='hapus("<?php echo url("user/".$row->id)?>")' style='color:white' class='btn btn-sm btn-danger' data-toggle='click-ripple' data-original-title='Remove' title='{{__('button.delete')}}'><i class='fa fa-trash-o' aria-hidden='true'></i> {{__('button.delete')}}</a>
-								<a onclick='reset_password("<?php echo url("user/".$row->id)."/reset"?>")' style='color:white' class='btn btn-sm btn-warning' data-toggle='click-ripple' data-original-title='Reset Password' title='{{__('button.reset')}}'><i class='fa fa-refresh' aria-hidden='true'></i> {{__('button.reset')}}</a>
+								<td>{{$row->display_name}}</td>
+								<td>{{$row->description}}</td>
+								<td style="text-align:center">
+									<a href='{{url("role/get/".$row->id."/")."/menu"}}' class='btn btn-sm btn-primary' >{{__('button.edit')}}</a>
 								</td>
 							</tr>
 							@endforeach
