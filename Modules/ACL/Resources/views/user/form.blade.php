@@ -14,7 +14,7 @@
                             </div>
                         </div>
                         <input type="hidden" id="mode" name="mode" value="{{isset($user) && $user->exists()?'edit':'add'}}">
-			<input type="hidden" id="id" value="{{isset($user) && $user->exists()?$user->id:''}}">
+			<input type="hidden" id="id" name="id" value="{{isset($user) && $user->exists()?$user->id:''}}">
 			<div class="modal-body">
 				<div class="form-group row" style="margin-bottom: 1.429rem;">
 					<label class="col-form-label col-md-3">{{ __('form.name') }}</label>
@@ -154,6 +154,10 @@
                           mode: function()
                           {
                               return $('#form :input[name="mode"]').val();
+                          },
+                          id: function()
+                          {
+                              return $('#form :input[name="id"]').val();
                           }
                 		},
                 		beforeSend: function () {
@@ -190,6 +194,10 @@
                           mode: function()
                           {
                               return $('#form :input[name="mode"]').val();
+                          },
+                          id: function()
+                          {
+                              return $('#form :input[name="id"]').val();
                           }
                 		},
                 		beforeSend: function () {

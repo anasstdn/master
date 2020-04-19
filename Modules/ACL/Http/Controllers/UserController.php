@@ -280,16 +280,21 @@ class UserController extends Controller
     switch($all_data['mode'])
     {
       case 'add':
-      $cek=User::where('username','like','%'.$all_data['username'].'%')->first();
+      // $cek=User::where('username','like','%'.$all_data['username'].'%')->first();
+      $query="SELECT * FROM `users` WHERE `username` LIKE '%".$all_data['username']."%' LIMIT 1"; 
       break;
       case 'edit':
-      $cek=User::where(function($q) use ($all_data){
-        $q->where('username','like','%'.$all_data['username'].'%')
-        ->where('id','<>',$all_data['id']);
-      })
-      ->first();
+      // $cek=User::where(function($q) use ($all_data){
+      //   $q->where('username','like','%'.$all_data['username'].'%')
+      //   ->where('id','<>',$all_data['id']);
+      // })
+      // ->first();
+      $query="SELECT * FROM `users` WHERE `username` LIKE '%".$all_data['username']."%' AND `id` <> '".$all_data['id']."' LIMIT 1"; 
       break;
+
     }
+      $cek=DB::select($query);
+      // dd($cek);
      if($cek==true) {
         return Response::json(array('msg' => 'true'));
       }
@@ -302,16 +307,19 @@ class UserController extends Controller
     switch($all_data['mode'])
     {
       case 'add':
-      $cek=User::where('email','like','%'.$all_data['email'].'%')->first();
+      // $cek=User::where('email','like','%'.$all_data['email'].'%')->first();
+      $query="SELECT * FROM `users` WHERE `email` LIKE '%".$all_data['email']."%' LIMIT 1"; 
       break;
       case 'edit':
-      $cek=User::where(function($q) use ($all_data){
-        $q->where('email','like','%'.$all_data['email'].'%')
-        ->where('id','<>',$all_data['id']);
-      })
-      ->first();
+      // $cek=User::where(function($q) use ($all_data){
+      //   $q->where('email','like','%'.$all_data['email'].'%')
+      //   ->where('id','<>',$all_data['id']);
+      // })
+      // ->first();
+      $query="SELECT * FROM `users` WHERE `email` LIKE '%".$all_data['email']."%' AND `id` <> '".$all_data['id']."' LIMIT 1"; 
       break;
     }
+    $cek=DB::select($query);
      if($cek==true) {
         return Response::json(array('msg' => 'true'));
       }
