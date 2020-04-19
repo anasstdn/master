@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Session;
+use App\Traits\ActivityTraits;
 
 class LoginController extends Controller
 {
@@ -22,6 +23,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    use ActivityTraits;
 
     /**
      * Where to redirect users after login.
@@ -56,7 +58,7 @@ class LoginController extends Controller
 
     public function authenticated(Request $request, $user)
     {
-        // $this->logLoginDetails($user);
+        $this->logLoginDetails($user);
         // dd($user);
         // if(!$user->verified)
         // {
@@ -72,7 +74,7 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        // $this->logLogoutDetails(Auth::user());
+        $this->logLogoutDetails(Auth::user());
         $this->guard()->logout();
 
         $request->session()->invalidate();

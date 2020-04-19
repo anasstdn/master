@@ -33,3 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/settings', 'SettingController@index')->name('settings');
     Route::post('/settings', 'SettingController@store')->name('settings.store');
 });
+
+Route::get('activity/load-data', 'ActivityLogController@loadData');
+Route::get('activity/get-data', 'ActivityLogController@getData');
+Route::resource('activity', 'ActivityLogController');
+Route::delete('activity/{id}/restore', 'ActivityLogController@restore');

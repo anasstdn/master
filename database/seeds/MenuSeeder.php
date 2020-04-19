@@ -20,6 +20,7 @@ class MenuSeeder extends Seeder
     	Menu::truncate();
     	$this->menuHome();
     	$this->menuAcl();
+        $this->menuActivity();
     }
 
     private function menuHome()
@@ -109,6 +110,25 @@ class MenuSeeder extends Seeder
     	)
     );
     	$submenu->save();
+    }
+
+     private function menuActivity()
+    {
+        $this->command->info('Menu Activity Seeder');
+        $permission = Permission::firstOrNew(array(
+            'name'=>'read-activity-menu'
+        ));
+        $permission->display_name = 'Read Activity Menus';
+        $permission->save();
+        $menu = Menu::firstOrNew(array(
+            'name'=>'menu.activity',
+            'permission_id'=>$permission->id,
+            'ordinal'=>1,
+            'parent_status'=>'N',
+            'url'=>'activity',
+        ));
+        $menu->icon = 'si-notebook';
+        $menu->save();
     }
 
 }
