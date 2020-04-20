@@ -19,5 +19,6 @@ return [
     'sales_report'       	=>	'Sales Report',
     'sales_graph'       	=>	'Sales Graph',
     'forecast'       		=>	'Forecast',
+    'activity'              =>  'Log Activity',
 ];
 ?>

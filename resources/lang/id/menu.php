@@ -19,5 +19,6 @@ return [
     'sales_report'       	=>	'Laporan Penjualan',
     'sales_graph'       	=>	'Grafik Penjualan',
     'forecast'       		=>	'Peramalan',
+    'activity'              =>  'Catatan Log',
 ];
 ?>
