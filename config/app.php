@@ -164,6 +164,8 @@ return [
         Laratrust\LaratrustServiceProvider::class,
         Reliese\Coders\CodersServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
+        Telegram\Bot\Laravel\TelegramServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -232,6 +234,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        'Telegram' => Telegram\Bot\Laravel\Facades\Telegram::class,
     ],
 
 ];

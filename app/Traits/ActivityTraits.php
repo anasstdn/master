@@ -4,12 +4,20 @@ namespace App\Traits;
 use App\Activity;
 use carbon\carbon;
 date_default_timezone_set("Asia/Jakarta");
+use Jenssegers\Agent\Agent;
 
 trait ActivityTraits
 {
     //
 	public function logCreatedActivity($logModel,$list_data,$menu,$table_name)
 	{
+		$agent = new Agent();
+        $browser = $agent->browser();
+        $version_browser = $agent->version($browser);
+
+        $platform = $agent->platform();
+        $version_platform = $agent->version($platform);
+
 		$changes='Insert data '.implode(', ',array_values($list_data));
 		$updated_at = Carbon::now()->format('d/m/Y H:i:s');
 		$request['type']='Create';
@@ -17,6 +25,8 @@ trait ActivityTraits
 		$request['menu']=$menu;
 		$request['data']=$list_data;
 		$request['table']=$table_name;
+		$request['device']=$platform.' '.$version_platform;
+		$request['browser']=$browser.' '.$version_browser;
 		// array_push($request,'type'=>'Create');
 		$activity = activity()
 		->causedBy(\Auth::user())
@@ -31,6 +41,13 @@ trait ActivityTraits
 	public function logUpdatedActivity($list,$before,$list_changes,$menu,$table_name)
 	{
 		// dd($before);
+		$agent = new Agent();
+        $browser = $agent->browser();
+        $version_browser = $agent->version($browser);
+
+        $platform = $agent->platform();
+        $version_platform = $agent->version($platform);
+
 		$updated_at = Carbon::now()->format('d/m/Y H:i:s');
 		unset($list_changes['updated_at']);
 		$old_keys = [];
@@ -59,6 +76,8 @@ trait ActivityTraits
 		$request['description']='Update '.$menu.' at '.$updated_at.'';
 		$request['menu']=$menu;
 		$request['table']=$table_name;
+		$request['device']=$platform.' '.$version_platform;
+		$request['browser']=$browser.' '.$version_browser;
 		// $properties = [
 		// 	'attributes'=>$list_changes,
 		// 	'old' =>$old_value_array,
@@ -77,6 +96,13 @@ trait ActivityTraits
 
 	public function logDeletedActivity($list,$changeLogs,$menu,$table_name)
 	{
+		$agent = new Agent();
+        $browser = $agent->browser();
+        $version_browser = $agent->version($browser);
+
+        $platform = $agent->platform();
+        $version_platform = $agent->version($platform);
+
 		$updated_at = Carbon::now()->format('d/m/Y H:i:s');
 		$attributes = $this->unsetAttributes($list);
 
@@ -90,6 +116,8 @@ trait ActivityTraits
 		$request['description']='Deleting '.$menu.' at '.$updated_at.'';
 		$request['menu']=$menu;
 		$request['table']=$table_name;
+		$request['device']=$platform.' '.$version_platform;
+		$request['browser']=$browser.' '.$version_browser;
 
 		$activity = activity()
 		->causedBy(\Auth::user())
@@ -102,9 +130,16 @@ trait ActivityTraits
 
 	public function logLoginDetails($user)
 	{
+		$agent = new Agent();
+        $browser = $agent->browser();
+        $version_browser = $agent->version($browser);
+
+        $platform = $agent->platform();
+        $version_platform = $agent->version($platform);
+
 		$updated_at = Carbon::now()->format('d/m/Y H:i:s');
 		$properties = [
-			'attributes' =>['description'=>''.$user->name.' login to system at '.$updated_at,'type'=>'Login']
+			'attributes' =>['description'=>''.$user->name.' login to system at '.$updated_at,'type'=>'Login','device'=>$platform.' '.$version_platform,'browser'=>$browser.' '.$version_browser]
 		];
 
 		$changes = ''.$user->name.' login to the system';
@@ -120,9 +155,16 @@ trait ActivityTraits
 
 	public function logLogoutDetails($user)
 	{
+		$agent = new Agent();
+        $browser = $agent->browser();
+        $version_browser = $agent->version($browser);
+
+        $platform = $agent->platform();
+        $version_platform = $agent->version($platform);
+
 		$updated_at = Carbon::now()->format('d/m/Y H:i:s');
 		$properties = [
-			'attributes' =>['description'=>''.$user->name.' logout from system at '.$updated_at,'type'=>'Logout']
+			'attributes' =>['description'=>''.$user->name.' logout from system at '.$updated_at,'type'=>'Logout','device'=>$platform.' '.$version_platform,'browser'=>$browser.' '.$version_browser]
 		];
 
 		$changes = ''.$user->name.' logout from the system';
@@ -138,9 +180,17 @@ trait ActivityTraits
 
 	public function menuAccess($user,$menu)
 	{
+		$agent = new Agent();
+        $browser = $agent->browser();
+        $version_browser = $agent->version($browser);
+
+        $platform = $agent->platform();
+        $version_platform = $agent->version($platform);
+       
+
 		$updated_at = Carbon::now()->format('d/m/Y H:i:s');
 		$properties = [
-			'attributes' =>['description'=>''.$user->name.' accessing menu '.$menu.' at '.$updated_at,'type'=>'Access','menu'=>$menu]
+			'attributes' =>['description'=>''.$user->name.' accessing menu '.$menu.' at '.$updated_at,'type'=>'Access','menu'=>$menu,'device'=>$platform.' '.$version_platform,'browser'=>$browser.' '.$version_browser]
 		];
 
 		$changes = ''.$user->name.' has access the '.$menu.'';

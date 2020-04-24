@@ -50,6 +50,20 @@
         }}</td>
       </tr>
       @endif
+      @if(isset($jsonData['attributes']['device']))
+      <tr>
+        <td><b>Device</b></td><td>
+          {{$jsonData['attributes']['device']}}
+      </td>
+      </tr>
+      @endif
+      @if(isset($jsonData['attributes']['browser']))
+      <tr>
+        <td><b>Browser</b></td><td>
+        {{$jsonData['attributes']['browser']}}
+      </td>
+      </tr>
+      @endif
     </tfoot>
     </table>
    </td>

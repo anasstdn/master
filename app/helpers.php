@@ -15,6 +15,12 @@
     return $array;
 }
 
+function test()
+{
+    date_default_timezone_set("Asia/Jakarta");
+    app('App\Http\Controllers\TelegramBotController')->test();
+    return true;
+}
 
 function bulan($bln)
 {

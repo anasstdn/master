@@ -1,0 +1,28 @@
+{
+    "update_id": 754613719,
+    "message": {
+        "message_id": 394169,
+        "from": {
+            "id": 388593288,
+            "is_bot": false,
+            "first_name": "Anas",
+            "username": "anas_123456",
+            "language_code": "ru"
+        },
+        "chat": {
+            "id": 388593288,
+            "first_name": "Anas",
+            "username": "anas_123456",
+            "type": "private"
+        },
+        "date": 1587684036,
+        "text": "/start",
+        "entities": [
+            {
+                "offset": 0,
+                "length": 6,
+                "type": "bot_command"
+            }
+        ]
+    }
+}

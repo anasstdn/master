@@ -138,7 +138,7 @@
                                                     <strong>{{ $errors->first('username')?:$errors->first('email') }}</strong>
                                                 </span>
                                                 @endif
-                                                <label for="login-username">Username</label>
+                                                <label for="login-username">Username or E-Mail</label>
                                             </div>
                                         </div>
                                     </div>

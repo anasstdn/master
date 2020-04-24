@@ -38,3 +38,11 @@ Route::get('activity/load-data', 'ActivityLogController@loadData');
 Route::get('activity/get-data', 'ActivityLogController@getData');
 Route::resource('activity', 'ActivityLogController');
 Route::delete('activity/{id}/restore', 'ActivityLogController@restore');
+
+
+Route::get('/send', 'TelegramBotController@sendMessage');
+Route::post('/send-message', 'TelegramBotController@storeMessage');
+Route::get('/send-photo', 'TelegramBotController@sendPhoto');
+Route::post('/store-photo', 'TelegramBotController@storePhoto');
+Route::get('/updated-activity', 'TelegramBotController@updatedActivity');
+

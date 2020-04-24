@@ -5,6 +5,7 @@ namespace Modules\Home\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Jenssegers\Agent\Agent;
 
 class HomeController extends Controller
 {
@@ -19,6 +20,14 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
+        // $agent = new Agent();
+        // $browser = $agent->browser();
+        // $version_browser = $agent->version($browser);
+
+        // $platform = $agent->platform();
+        // $version_platform = $agent->version($platform);
+       
+        // dd($agent->isMobile());
         return view('home::index');
     }
 
